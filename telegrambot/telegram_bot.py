@@ -19,12 +19,17 @@ from telebot.storage import StateMemoryStorage
 state_storage = StateMemoryStorage()
 
 
-# Telegram bot details
-token = '6632156369:AAGXe1HMxfBM-56CgcKErtm2VjfhkbZW8rw'
+# From config file retrieve bot token and DB API URL/PORT
+def get_config():
+    filename = 'TG2/config.json'
+    dictionary = json.load(open(filename))
+    token = dictionary['token']
+    URL = dictionary['URL']
+    PORT = dictionary['URL']
 
-# DB API URL and port
-URL = 'adlab.m2madgenera.com'
-PORT = 4367
+    return token, URL, PORT
+
+token, URL, PORT = get_config()
 
 # Enable logging
 logging.basicConfig(
